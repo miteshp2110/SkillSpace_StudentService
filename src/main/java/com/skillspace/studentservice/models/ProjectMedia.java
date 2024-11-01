@@ -1,12 +1,9 @@
 package com.skillspace.studentservice.models;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "project_media")
 public class ProjectMedia {
     @Id
     private int project_id;
