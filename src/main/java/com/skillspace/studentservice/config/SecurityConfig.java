@@ -1,6 +1,7 @@
-package com.skillspace.studentservice.security;
+package com.skillspace.studentservice.config;
 
 
+import com.skillspace.studentservice.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
