@@ -20,6 +20,9 @@ public class ProjectService {
     @Autowired
     private UsernameUtil usernameUtil;
 
+    @Autowired
+    EmailService emailService;
+
     public Map<String,List<Project>> getAllProjects() {
         String email = usernameUtil.getUsername();
         Map<String,List<Project>> projects = new HashMap<>();
@@ -56,6 +59,7 @@ public class ProjectService {
 
     public Map<String,String> updateProjectStatus(int status,int project_id) {
         Map<String,String> map = new HashMap<>();
+        emailService.sendStatusUpdatedNotification(project_id);
         projectRepository.updateProjectStatus(status,project_id);
         map.put("Message","Success");
         return map;
@@ -63,6 +67,7 @@ public class ProjectService {
 
     public Map<String,String> addProject(Project project) {
         Map<String,String> map = new HashMap<>();
+        emailService.sendProjectAddedNotification((int) project.getTeacher_id());
         map.put("Message","Success");
         projectRepository.save(project);
         return map;
