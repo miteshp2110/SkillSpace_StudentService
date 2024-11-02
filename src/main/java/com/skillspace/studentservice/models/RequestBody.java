@@ -36,4 +36,36 @@ public class RequestBody {
                 """,company,name,email
         );
     }
+
+    public String sendIssueAddedNotification(String email,String name){
+
+
+        return String.format(
+                """
+                {
+                    "company":"%s",
+                    "notificationTitle":"Issue Added!!",
+                    "notificationBody" : "A issue has been raised by student in project under your supervision. Go Checkout !!!",
+                    "recipientName":"%s",
+                    "recipient":"%s"
+                }
+                """,company,name,email
+        );
+    }
+
+    public String sendIssueSolvedNotification(String email,String name){
+
+
+        return String.format(
+                """
+                {
+                    "company":"%s",
+                    "notificationTitle":"Issue Solved!!",
+                    "notificationBody" : "Student has marked issue as solved. Go Checkout !!!",
+                    "recipientName":"%s",
+                    "recipient":"%s"
+                }
+                """,company,name,email
+        );
+    }
 }

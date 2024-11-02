@@ -1,5 +1,6 @@
 package com.skillspace.studentservice.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -7,11 +8,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "issues")
 public class Issue {
-    @Id
+
     private int project_id;
+
+    @Id
+    @Column(insertable = false)
     private int issue_id;
+
     private String issue_title;
     private String issue_description;
+
+    @Column(insertable = false)
     private boolean issue_status;
 
     public int getProject_id() {
