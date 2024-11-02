@@ -36,6 +36,12 @@ public class EmailService {
         requestUtil.sentPostRequest(requestBody.projectStatusUpdatedNotification(teacher.getEmail(),teacher.getName()));
     }
 
+    public void sendProjectCompletedNotification(int project_id){
+        int id = projectRepository.getTeacherId(project_id);
+        Teacher teacher = teacherRepository.findEmailById(id);
+        requestUtil.sentPostRequest(requestBody.projectCompletedNotification(teacher.getEmail(),teacher.getName()));
+    }
+
     public void sendIssueAddedNotification(int project_id){
         int id = projectRepository.getTeacherId(project_id);
         Teacher teacher = teacherRepository.findEmailById(id);

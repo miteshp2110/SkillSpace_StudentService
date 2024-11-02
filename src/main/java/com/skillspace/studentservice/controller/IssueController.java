@@ -42,16 +42,4 @@ public class IssueController {
         return issueService.addIssue(issue);
     }
 
-    @PostMapping("/getIssueChats")
-    public String getIssueChats(@RequestBody Map<String, Integer> map) {
-        System.out.println(map.get("issue_id"));
-        return "issue chats";
-    }
-
-    @PostMapping("/postIssueChat")
-    public String postIssueChat(@RequestBody Map<String, Object> map) {
-        System.out.println(map.get("issue_id"));
-        System.out.println(map.get("message"));
-        return "issue chat post";
-    }
 }

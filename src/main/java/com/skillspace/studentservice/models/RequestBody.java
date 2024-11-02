@@ -37,6 +37,24 @@ public class RequestBody {
         );
     }
 
+    public String projectCompletedNotification(String email,String name){
+
+
+        return String.format(
+                """
+                {
+                    "company":"%s",
+                    "notificationTitle":"Project Completed!!",
+                    "notificationBody" : "Congratulation, student has completed a project under your supervision. Go Checkout !!!",
+                    "recipientName":"%s",
+                    "recipient":"%s"
+                }
+                """,company,name,email
+        );
+    }
+
+
+
     public String sendIssueAddedNotification(String email,String name){
 
 

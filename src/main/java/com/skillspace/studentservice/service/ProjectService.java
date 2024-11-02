@@ -59,10 +59,27 @@ public class ProjectService {
 
     public Map<String,String> updateProjectStatus(int status,int project_id) {
         Map<String,String> map = new HashMap<>();
-        emailService.sendStatusUpdatedNotification(project_id);
-        projectRepository.updateProjectStatus(status,project_id);
-        map.put("Message","Success");
-        return map;
+        if(status == 2 || status == 3) {
+            emailService.sendStatusUpdatedNotification(project_id);
+            projectRepository.updateProjectStatus(status,project_id);
+            map.put("Message","Success");
+            return map;
+        }
+        else{
+
+            if(status == 4) {
+                emailService.sendProjectCompletedNotification(project_id);
+                projectRepository.updateProjectStatus(status,project_id);
+                projectRepository.updateEndDate(project_id);
+                map.put("Message","Success");
+                return map;
+
+            }
+            else{
+                map.put("Message","Error");
+                return map;
+            }
+        }
     }
 
     public Map<String,String> addProject(Project project) {
