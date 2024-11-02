@@ -2,7 +2,9 @@ package com.skillspace.studentservice.service;
 
 
 import com.skillspace.studentservice.models.Project;
+import com.skillspace.studentservice.models.ProjectResponse;
 import com.skillspace.studentservice.repository.ProjectRepository;
+import com.skillspace.studentservice.repository.TeacherRepository;
 import com.skillspace.studentservice.util.UsernameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ProjectService {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    TeacherRepository  teacherRepository;
 
     public Map<String,List<Project>> getAllProjects() {
         String email = usernameUtil.getUsername();
@@ -51,9 +56,14 @@ public class ProjectService {
         return map;
     }
 
-    public Map<String,Project> getProjectById(int id) {
-        Map<String,Project> map = new HashMap<>();
-        map.put("projects",projectRepository.getProjectById(id));
+    public Map<String, ProjectResponse> getProjectById(int id) {
+        Map<String,ProjectResponse> map = new HashMap<>();
+        Project project = projectRepository.getProjectById(id);
+        String teacherName = teacherRepository.findNameById((int) project.getTeacher_id());
+        ProjectResponse projectResponse = new ProjectResponse();
+        projectResponse.setProject(project);
+        projectResponse.setTeacherName(teacherName);
+        map.put("projects",projectResponse);
         return map;
     }
 
