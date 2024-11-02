@@ -1,68 +1,57 @@
 package com.skillspace.studentservice.controller;
 
 import com.skillspace.studentservice.models.Project;
+import com.skillspace.studentservice.service.ProjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
+
+import java.util.List;
 import java.util.Map;
 
 @RestController
 public class ProjectController {
 
+    @Autowired
+    private ProjectService projectService;
+
     @PostMapping("/totalProject")
-    public String getProjectDetails() {
-        return "number of project";
+    public Map<String, Integer> getProjectDetails() {
+        return projectService.getTotalProjectsCount();
     }
 
 
     @PostMapping("/ongoingProject")
-    public String onGoingProjects() {
-        return "Ongoing Projects";
+    public Map<String,Integer> onGoingProjects() {
+        return projectService.getOngoingProjectsCount();
     }
 
     @PostMapping("/completedProject")
-    public String completedProject() {
-        return "Completed Project";
+    public Map<String,Integer> completedProject() {
+        return projectService.getCompletedProjectsCount();
     }
 
     @PostMapping("/addProject")
-    public String addProject(@RequestBody Project project) {
-        System.out.println(project);
-        return "Add Project";
+    public Map<String,String> addProject(@RequestBody Project project) {
+        return projectService.addProject(project);
     }
 
     @PostMapping("/getAllProjects")
-    public String getAllProjects() {
-        return "All Projects";
+    public Map<String, List<Project>> getAllProjects() {
+        return projectService.getAllProjects();
     }
 
     @PostMapping("/getProjectDetails")
-    public String getProjectDetails(@RequestBody Map<String, Integer> projectDetails) {
-        System.out.println(projectDetails.get("project_id"));
-        return "Project Details";
+    public Map<String,Project> getProjectDetails(@RequestBody Map<String, Integer> projectDetails) {
+        return projectService.getProjectById(projectDetails.get("project_id"));
     }
 
     @PostMapping("/updateProjectStatus")
-    public String updateProjectStatus(@RequestBody Map<String, Integer> projectDetails) {
-        System.out.println(projectDetails.get("project_id"));
-        System.out.println(projectDetails.get("status"));
-        return "Update Project";
+    public Map<String,String> updateProjectStatus(@RequestBody Map<String, Integer> projectDetails) {
+        return projectService.updateProjectStatus(projectDetails.get("status"), projectDetails.get("project_id"));
     }
 
-    @PostMapping("/addProjectMedia")
-    public String addProjectMedia(@RequestParam("project_id")String project_id, @RequestParam("media")MultipartFile media) {
-        System.out.println(project_id);
-        System.out.println(media.getOriginalFilename());
-        return "Add Project Media";
-    }
-
-    @PostMapping("/getProjectMedia")
-    public String getProjectMedia(@RequestBody Map<String, Integer> projectDetails) {
-        System.out.println(projectDetails.get("project_id"));
-        return "Project Media";
-    }
 
 }
