@@ -1,6 +1,7 @@
 package com.skillspace.studentservice.controller;
 
 import com.skillspace.studentservice.models.Project;
+import com.skillspace.studentservice.models.ProjectResponse;
 import com.skillspace.studentservice.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +45,7 @@ public class ProjectController {
     }
 
     @PostMapping("/getProjectDetails")
-    public Map<String,Project> getProjectDetails(@RequestBody Map<String, Integer> projectDetails) {
+    public Map<String, ProjectResponse> getProjectDetails(@RequestBody Map<String, Integer> projectDetails) {
         return projectService.getProjectById(projectDetails.get("project_id"));
     }
 

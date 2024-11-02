@@ -11,5 +11,8 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 
     @Query(value = "select * from teacher where id =:id",nativeQuery = true)
     public Teacher findEmailById(@Param("id") int id);
+
+    @Query(value = "select name from teacher where id =:id",nativeQuery = true)
+    public String findNameById(@Param("id") int id);
 }
 
