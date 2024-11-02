@@ -38,4 +38,9 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "select teacher_id from project where project_id =:project_id",nativeQuery = true)
     public int getTeacherId(@Param("project_id")int project_id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "update project set end_date = current_date where project_id =:project_id",nativeQuery = true)
+    public int updateEndDate(@Param("project_id")int project_id);
+
 }
