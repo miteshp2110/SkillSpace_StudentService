@@ -92,11 +92,12 @@ public class ProjectService {
         }
     }
 
-    public Map<String,String> addProject(Project project) {
-        Map<String,String> map = new HashMap<>();
+    public Map<String,Integer> addProject(Project project) {
+        Map<String,Integer> map = new HashMap<>();
         emailService.sendProjectAddedNotification((int) project.getTeacher_id());
-        map.put("Message","Success");
         projectRepository.save(project);
+        int pid = projectRepository.getPID((int) project.getStudent_id(),(int) project.getTeacher_id(),project.getTitle(),project.getDescription());
+        map.put("id",pid);
         return map;
     }
 

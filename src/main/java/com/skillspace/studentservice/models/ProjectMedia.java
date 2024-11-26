@@ -5,8 +5,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class ProjectMedia {
-    @Id
+
     private int project_id;
+    @Id
     private String media_url;
 
 
