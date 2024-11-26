@@ -18,7 +18,7 @@ public class ProjectMediaService {
     @Autowired
     private S3Service s3Service;
 
-    public Map<String,String> addProjectMedia(MultipartFile[] media , String project_id) {
+    public Map<String,String> addProjectMedia(List<MultipartFile> media , String project_id) {
         Map<String,String> map = new HashMap<>();
         try{
 

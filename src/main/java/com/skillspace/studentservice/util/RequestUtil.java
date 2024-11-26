@@ -25,11 +25,16 @@ public class RequestUtil {
     @Value("${email_service_apiKey}")
     private String apiKey;
 
+    @Value("${email_service_url}")
+    private String url;
+
     public String sentPostRequest(String body) {
 
-        String uri = "http://" + host + ":" + port + "/send/notification";
+//        String uri = "http://" + host + ":" + port + "/send/notification";
 //        System.out.println(uri);
 //        System.out.println(apiKey);
+
+        String uri = url + "/send/notification";
 
         RestTemplate restTemplate = new RestTemplate();
 

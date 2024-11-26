@@ -35,7 +35,7 @@ public class ProjectController {
     }
 
     @PostMapping("/addProject")
-    public Map<String,String> addProject(@RequestBody Project project) {
+    public Map<String,Integer> addProject(@RequestBody Project project) {
         return projectService.addProject(project);
     }
 

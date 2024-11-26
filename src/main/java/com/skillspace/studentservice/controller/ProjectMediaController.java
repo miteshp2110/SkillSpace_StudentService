@@ -20,7 +20,7 @@ public class ProjectMediaController {
     ProjectMediaService projectMediaService;
 
     @PostMapping("/addProjectMedia")
-    public Map<String,String> addProjectMedia(@RequestParam("project_id")String project_id, @RequestParam("media") MultipartFile[] media) {
+    public Map<String,String> addProjectMedia(@RequestParam("project_id")String project_id, @RequestParam("media") List<MultipartFile> media) {
 
         return projectMediaService.addProjectMedia(media,project_id);
     }
